@@ -13,6 +13,10 @@ Route::get('/', fn () => redirect()->route('dashboard'));
 
 Route::get('/dashboard', [DashboardController::class, 'index']) ->name('dashboard');
 Route::get('/mahasiswa', [MahasiswaController::class, 'index']) ->name('mahasiswa.index');
+
+Route::get('/mahasiswa/{nim}', [MahasiswaController::class, 'show'])
+    ->name('mahasiswa.show');
+
 Route::get('/dosen', [DosenController::class, 'index']) ->name('dosen.index');
 Route::get('/mata-kuliah', [MataKuliahController::class, 'index']) ->name('matakuliah.index');
 Route::get('/krs', [KrsController::class, 'index']) ->name('krs.index');

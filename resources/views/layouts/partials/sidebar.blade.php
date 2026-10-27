@@ -15,6 +15,12 @@
                 <x-sidebar-link route="dashboard" ikon="bi-speedometer2">
                     Dashboard
                 </x-sidebar-link>
+            </ul>
+
+            <small class="text-uppercase text-body-secondary fw-semibold mb-2">
+                Data Akademik
+            </small>
+            <ul class="nav nav-pills flex-column gap-1">
                 <x-sidebar-link route="mahasiswa.index" pola="mahasiswa.*"
                                  ikon="bi-people-fill">
                     Mahasiswa

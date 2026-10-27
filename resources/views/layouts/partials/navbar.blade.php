@@ -12,17 +12,25 @@
             </a>
         </div>
 
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person-circle"></i>
-                <span class="d-none d-sm-inline">Administrator</span>
+        <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-outline-light btn-sm"
+                    id="themeToggle" type="button">
+                <i class="bi bi-moon-fill" id="themeIcon"></i>
+                <span class="d-none d-sm-inline">Ganti Tema</span>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><span class="dropdown-item-text small">Akun contoh</span></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item disabled" href="#">Keluar</a></li>
-            </ul>
+
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle"></i>
+                    <span class="d-none d-sm-inline">Administrator</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><span class="dropdown-item-text small">Akun contoh</span></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item disabled" href="#">Keluar</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+</nav>

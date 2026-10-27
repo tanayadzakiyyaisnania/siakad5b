@@ -8,18 +8,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // Data sementara. Akan diganti query Eloquent pada jobsheet lanjutan
-        $statistik = [
-            ['judul' => 'Mahasiswa', 'jumlah' => 1250,
-            'ikon' => 'bi-mortarboard-fill', 'warna' => 'primary'],
-            ['judul' => 'Dosen', 'jumlah' => 68,
-            'ikon' => 'bi-person-badge-fill', 'warna' => 'success'],
-            ['judul' => 'Mata Kuliah', 'jumlah' => 94,
-            'ikon' => 'bi-book-fill', 'warna' => 'warning'],
-            ['judul' => 'KRS Aktif', 'jumlah' => 842,
-            'ikon' => 'bi-journal-check', 'warna' => 'info'],
-        ];
-
         $kolomKrs = [
             'nim' => 'NIM', 'nama' => 'Nama Mahasiswa',
             'sks' => 'SKS', 'status' => 'Status',
@@ -36,6 +24,23 @@ class DashboardController extends Controller
             'sks' => 18, 'status' => 'Menunggu'],
             ['nim' => '2401020', 'nama' =>  'Rizky Pratama',
             'sks' => 21, 'status' => 'Disetujui'],
+        ];
+
+        $totalSks = array_sum(array_column($krsTerbaru, 'sks'));
+        $rataRataSks = round($totalSks / count($krsTerbaru), 1);
+
+        // Data sementara. Akan diganti query Eloquent pada jobsheet lanjutan
+        $statistik = [
+            ['judul' => 'Mahasiswa', 'jumlah' => 1250,
+                'ikon' => 'bi-mortarboard-fill', 'warna' => 'primary'],
+            ['judul' => 'Dosen', 'jumlah' => 68,
+                'ikon' => 'bi-person-badge-fill', 'warna' => 'success'],
+            ['judul' => 'Mata Kuliah', 'jumlah' => 94,
+                'ikon' => 'bi-book-fill', 'warna' => 'warning'],
+            ['judul' => 'KRS Aktif', 'jumlah' => 842,
+                'ikon' => 'bi-journal-check', 'warna' => 'info'],
+            ['judul' => 'Rata-rata SKS per KRS', 'jumlah' => $rataRataSks,
+                'ikon' => 'bi-calculator-fill', 'warna' => 'secondary'],
         ];
 
         $statusKrs = [
