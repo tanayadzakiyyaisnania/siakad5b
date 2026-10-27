@@ -12,7 +12,6 @@ class BerandaController extends Controller
         $versiMysql = DB::selectOne('select version() as versi')->versi;
 
         return view('beranda', [
-            'variabel' => '<script>alert(1)</script>',
             'namaAplikasi' => config('app.name'),
             'versiLaravel' => app()->version(),
             'versiPhp' => PHP_VERSION,
