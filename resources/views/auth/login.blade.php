@@ -24,8 +24,12 @@
                 </div>
 
                 <div class="mb-3">
-                    <x-form-input label="Kata Sandi" name="password" type="password"
+                    <x-form-input label="Kata Sandi" name="password" type="password" id="password"
                                   autocomplete="current-password" required />
+                    <button class="btn btn-outline-secondary mt-2" type="button"
+                            id="togglePassword">
+                        Lihat
+                    </button>
                 </div>
 
                 <div class="form-check mb-3">
@@ -39,3 +43,19 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+<script>
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
+
+    togglePassword.addEventListener('click', function () {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            togglePassword.textContent = 'Sembunyikan';
+        } else {
+            passwordInput.type = 'password';
+            togglePassword.textContent = 'Lihat';
+        }
+    });
+</script>
+@endpush

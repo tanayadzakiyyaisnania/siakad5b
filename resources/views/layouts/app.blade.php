@@ -17,6 +17,8 @@
     <!-- CSS SIAKAD -->
     <link href="{{ asset('css/siakad.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('vendor/sweetalert2/sweetalert2.min.css') }}">
+
     @stack('styles')
 </head>
 

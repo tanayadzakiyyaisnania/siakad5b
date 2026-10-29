@@ -17,7 +17,7 @@ Route::middleware('guest')->group(function () {
 });
 
 // Halaman internal: hanya dapat diakses setelah login
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'no-store'])->group(function () {
     
     // Hanya admin
     Route::get('/pengguna', [PenggunaController::class, 'index'])
