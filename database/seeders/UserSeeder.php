@@ -4,27 +4,33 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::updateOrCreate(
-            ['email' => 'dosen@siakad.test'],
-            [
-                'name' => 'Dosen SIAKAD',
-                'password' => 'dosen123',
-                'role' => 'dosen',
-            ]
-        );
+        // Akun uji berpassword lemah tidak boleh ada di server sebenarnya.
+        if (app()->isProduction()) {
+            $this->command?->warn('UserSeeder dilewati di production.');
 
-        User::updateOrCreate(
-            ['email' => 'mahasiswa@siakad.test'],
-            [
-                'name' => 'Mahasiswa SIAKAD',
-                'password' => 'mahasiswa123',
-                'role' => 'mahasiswa',
-            ]
-        );
+            return;
+        }
+
+        $akun = [
+            ['dosen@siakad.test', 'Dosen Uji', 'Dosen@12345', 'dosen'],
+            ['mahasiswa@siakad.test', 'Mahasiswa Uji', 'Mahasiswa@12345', 'mahasiswa'],
+        ];
+
+        foreach ($akun as [$email, $nama, $password, $role]) {
+            User::updateOrCreate(
+                ['email' => $email],
+                [
+                    'name' => $nama,
+                    'password' => Hash::make($password),
+                    'role' => $role,
+                ]
+            );
+        }
     }
 }
