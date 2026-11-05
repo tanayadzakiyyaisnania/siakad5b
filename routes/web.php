@@ -42,8 +42,19 @@ Route::middleware(['auth', 'no-store'])->group(function () {
         ->name('mahasiswa.show');
 
     // Dosen
-    Route::get('/dosen', [DosenController::class, 'index'])
-        ->name('dosen.index');
+
+    // 1) Endpoint JSON DataTables: Harus di atas route yang memuat {dosen}
+    Route::get('/dosen/data', [DosenController::class, 'data']) ->name('dosen.data');
+    
+    // 2) Tambah, ubah, hapus: khusu admin (role berjalan SETELAH auth)
+    Route::middleware('role:admin')->group(function () {
+        Route::resource('dosen', DosenController::class)
+            ->except(['index','show']);
+    });
+
+    // 3) Daftar dan detail: semua pengguna yang sudah login
+    Route::resource('dosen', DosenController::class) 
+        ->only(['index', 'show']);
 
     // Mata Kuliah
     Route::get('/mata-kuliah', [MataKuliahController::class, 'index'])
