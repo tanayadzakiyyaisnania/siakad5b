@@ -4,7 +4,7 @@
 
 @section('content')
     <x-page-header judul="Dashboard"
-                   deskripsi="Ringkasan data akademik (data sementara)." />
+                   deskripsi="Ringkasan data akademik." />
 
     <div class="row g-3 mb-4">
         @foreach ($statistik as $item)
@@ -30,17 +30,11 @@
                 <div class="card-header bg-body fw-semibold">Status KRS</div>
                 <div class="card-body">
                     @foreach ($statusKrs as $s)
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-between small mb-1">
-                                <span>{{ $s['label'] }}</span>
-                                <span>{{ $s['persen'] }}%</span>
-                            </div>
-                            <div class="progress" role="progressbar"
-                                 aria-valuenow="{{ $s['persen'] }}"
-                                 aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar bg-{{ $s['warna'] }}"
-                                     style="width: {{ $s['persen'] }}%"></div>
-                            </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span>{{ $s['label'] }}</span>
+                            <span class="badge bg-{{ $s['warna'] }}">
+                                {{ $s['jumlah'] }}
+                            </span>
                         </div>
                     @endforeach
                 </div>

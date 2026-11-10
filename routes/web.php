@@ -35,9 +35,25 @@ Route::middleware(['auth', 'no-store'])->group(function () {
         ->name('dashboard');
 
     // Mahasiswa
+    Route::get('/mahasiswa/data', [MahasiswaController::class, 'data'])
+        ->name('mahasiswa.data');
+    Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])
+        ->middleware('role:admin')
+        ->name('mahasiswa.create');
+    Route::get('/mahasiswa/{nim}/edit', [MahasiswaController::class, 'edit'])
+        ->middleware('role:admin')
+        ->name('mahasiswa.edit');
+    Route::post('/mahasiswa', [MahasiswaController::class, 'store'])
+        ->middleware('role:admin')
+        ->name('mahasiswa.store');
+    Route::put('/mahasiswa/{nim}', [MahasiswaController::class, 'update'])
+        ->middleware('role:admin')
+        ->name('mahasiswa.update');
+    Route::delete('/mahasiswa/{nim}', [MahasiswaController::class, 'destroy'])
+        ->middleware('role:admin')
+        ->name('mahasiswa.destroy');
     Route::get('/mahasiswa', [MahasiswaController::class, 'index'])
         ->name('mahasiswa.index');
-
     Route::get('/mahasiswa/{nim}', [MahasiswaController::class, 'show'])
         ->name('mahasiswa.show');
 
@@ -57,10 +73,71 @@ Route::middleware(['auth', 'no-store'])->group(function () {
         ->only(['index', 'show']);
 
     // Mata Kuliah
+    Route::get('/mata-kuliah/data', [MataKuliahController::class, 'data'])
+        ->name('matakuliah.data');
+
+    Route::get('/mata-kuliah/create', [MataKuliahController::class, 'create'])
+        ->middleware('role:admin')
+        ->name('matakuliah.create');
+
+    Route::post('/mata-kuliah', [MataKuliahController::class, 'store'])
+        ->middleware('role:admin')
+        ->name('matakuliah.store');
+
+    Route::get('/mata-kuliah/{id}/edit', [MataKuliahController::class, 'edit'])
+        ->middleware('role:admin')
+        ->name('matakuliah.edit');
+
+    Route::put('/mata-kuliah/{id}', [MataKuliahController::class, 'update'])
+        ->middleware('role:admin')
+        ->name('matakuliah.update');
+
+    Route::delete('/mata-kuliah/{id}', [MataKuliahController::class, 'destroy'])
+        ->middleware('role:admin')
+        ->name('matakuliah.destroy');
+
+    Route::get('/mata-kuliah/{id}', [MataKuliahController::class, 'show'])
+        ->name('matakuliah.show');
+
     Route::get('/mata-kuliah', [MataKuliahController::class, 'index'])
         ->name('matakuliah.index');
 
+    // Export Excel
+    Route::get('/krs/export-excel', [KrsController::class, 'exportExcel'])
+        ->middleware('role:admin')
+        ->name('krs.exportExcel');
+    // Export PDF
+    Route::get('/krs/export-pdf', [KrsController::class, 'exportPdf'])
+        ->middleware('role:admin')
+        ->name('krs.exportPdf');
+
     // KRS
+    Route::get('/krs/data', [KrsController::class, 'data'])
+        ->name('krs.data');
+
+    Route::get('/krs/create', [KrsController::class, 'create'])
+        ->middleware('role:admin')
+        ->name('krs.create');
+
+    Route::post('/krs', [KrsController::class, 'store'])
+        ->middleware('role:admin')
+        ->name('krs.store');
+
+    Route::get('/krs/{id}/edit', [KrsController::class, 'edit'])
+        ->middleware('role:admin')
+        ->name('krs.edit');
+
+    Route::put('/krs/{id}', [KrsController::class, 'update'])
+        ->middleware('role:admin')
+        ->name('krs.update');
+
+    Route::delete('/krs/{id}', [KrsController::class, 'destroy'])
+        ->middleware('role:admin')
+        ->name('krs.destroy');
+
+    Route::get('/krs/{id}', [KrsController::class, 'show'])
+        ->name('krs.show');
+
     Route::get('/krs', [KrsController::class, 'index'])
         ->name('krs.index');
 

@@ -44,8 +44,9 @@
                     Administrasi
                 </small>
                 <ul class="nav nav-pills flex-column gap-1">
-                    <x-sidebar-link route="pengguna.index" ikon="bi-people">
-                        Data Pengguna
+                    <x-sidebar-link route="pengguna.index" pola="pengguna.*"
+                                    ikon="bi-shield-lock-fill">
+                        Pengguna
                     </x-sidebar-link>
                 </ul>
             @endif

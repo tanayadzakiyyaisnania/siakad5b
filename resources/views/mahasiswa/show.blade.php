@@ -1,22 +1,55 @@
 @extends('layouts.app')
 
+@section('title', 'Detail Mahasiswa')
+
 @section('content')
-    <div class="container-fluid">
-        <h4 class="mb-3">Detail Mahasiswa</h4>
+    <x-page-header judul="Detail Mahasiswa"
+                   deskripsi="Informasi lengkap satu mahasiswa." />
 
-        <div class="card">
-            <div class="card-body">
-                <p><strong>NIM:</strong> {{ $mahasiswa['nim']}} </p>
-                <p><strong>Nama Lengkap:</strong> {{ $mahasiswa['nama']}} </p>
-                <p><strong>Angkatan:</strong> {{ $mahasiswa['angkatan']}} </p>
-                <p><strong>Email:</strong> {{ $mahasiswa['email']}} </p>
-                <p><strong>Status:</strong> {{ $mahasiswa['status']}} </p>
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-body fw-semibold">
+            {{ $mahasiswa->nama }}
+        </div>
 
-                <a href="{{ route('mahasiswa.index') }}"
-                    class="btn btn-secondary">
-                        Kembali
+        <div class="card-body">
+            <dl class="row mb-3">
+                <dt class="col-sm-3">NIM</dt>
+                <dd class="col-sm-9">{{ $mahasiswa->nim }}</dd>
+
+                <dt class="col-sm-3">Nama Lengkap</dt>
+                <dd class="col-sm-9">{{ $mahasiswa->nama }}</dd>
+
+                <dt class="col-sm-3">Jenis Kelamin</dt>
+                <dd class="col-sm-9">
+                    {{ $mahasiswa->jenis_kelamin ?: '-' }}
+                </dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">{{ $mahasiswa->email ?: '-' }}</dd>
+
+                <dt class="col-sm-3">Angkatan</dt>
+                <dd class="col-sm-9">{{ $mahasiswa->angkatan ?: '-' }}</dd>
+
+                <dt class="col-sm-3">Program Studi</dt>
+                <dd class="col-sm-9">
+                    {{ $mahasiswa->program_studi ?: '-' }}
+                </dd>
+
+                <dt class="col-sm-3">Status</dt>
+                <dd class="col-sm-9">{{ $mahasiswa->status ?: '-' }}</dd>
+            </dl>
+
+            <a href="{{ route('mahasiswa.index') }}"
+               class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Kembali
+            </a>
+
+            @if (Auth::user()->role === 'admin')
+                <a href="{{ route('mahasiswa.edit', $mahasiswa->nim) }}"
+                   class="btn btn-warning">
+                    <i class="bi bi-pencil-square"></i> Ubah
                 </a>
-            </div>
+            @endif
         </div>
     </div>
 @endsection

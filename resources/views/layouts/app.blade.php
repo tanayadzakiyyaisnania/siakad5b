@@ -51,8 +51,17 @@
     </div>
 
     <!-- Bootstrap JavaScript -->
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}">
-    </script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- jQuery -->
+    <script src="{{ asset('vendor/jquery/jquery-3.7.1.min.js') }}"></script>
+
+    <!-- DataTables -->
+    <script src="{{ asset('vendor/datatables/dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.bootstrap5.min.js') }}"></script>
+
+    <!-- SweetAlert2 -->
+<script src="{{ asset('vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
 
     <script>
         const tombolTema = document.getElementById('themeToggle');
